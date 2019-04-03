@@ -23,7 +23,10 @@ public class StaticInnerClassSingleton {
      * 私有的构造器是必须要有的，不然外部就要new出来的
      */
     private StaticInnerClassSingleton() {
-
+        //防止反射攻击
+        if (InnerClass.staticInnerClassSingleton != null) {
+            throw new RuntimeException("单利构造器禁止反射调用");
+        }
     }
 
     public static void main(String[] args) {
